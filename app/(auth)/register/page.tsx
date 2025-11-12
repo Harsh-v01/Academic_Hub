@@ -57,7 +57,7 @@ export default function RegisterPage() {
           study material in one simple hub.
         </p>
         <img
-          src="/placeholder.jpg"
+          src="./login/user.png"
           alt="Study Illustration"
           className="mt-8 w-80 rounded-xl shadow-md"
         />

@@ -29,11 +29,24 @@ export async function POST(req: Request) {
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
 
+    // Debug logging to help diagnose 400s from clients
+    try {
+      const keys = [] as string[];
+      // formData.keys() is an iterator
+      for (const k of formData.keys()) keys.push(k as string);
+      console.log('[plag-check] formData keys:', keys);
+      if (file) console.log('[plag-check] file:', file.name, 'size:', file.size, 'type:', file.type);
+    } catch (logErr) {
+      console.warn('[plag-check] failed to log formData details', logErr);
+    }
+
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
     const textContent = await extractTextFromFile(file);
+
+  console.log('[plag-check] extracted text length:', textContent?.length ?? 0);
 
     if (!textContent || textContent.trim().length < 80) {
       return NextResponse.json(

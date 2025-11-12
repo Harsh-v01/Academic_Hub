@@ -48,7 +48,7 @@ export default function LoginPage() {
           journey effortlessly.
         </p>
         <img
-          src="/placeholder-user.jpg"
+          src="user.png"
           alt="Student"
           className="mt-8 w-80 rounded-xl shadow-md"
         />

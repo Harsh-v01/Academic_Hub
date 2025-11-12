@@ -25,7 +25,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="antialiased">
+    // include 'light' here to match the theme provider's defaultTheme on the server
+    <html lang="en" className="antialiased light">
       <body className={`font-sans ${inter.variable} ${GeistMono.variable}`}>
         <a
           href="#content"
