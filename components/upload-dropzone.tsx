@@ -50,7 +50,11 @@ export default function UploadDropzone() {
       })
       const data = await res.json()
 
-      if (!res.ok) throw new Error(data.error || "Upload failed")
+      // Include server-provided `details` (if any) in the client error message to aid debugging
+      if (!res.ok) {
+        const detailStr = data?.details ? ` - details: ${JSON.stringify(data.details)}` : ""
+        throw new Error((data.error || "Upload failed") + detailStr)
+      }
 
       // store both plagiarism score + extracted text
       setResult({

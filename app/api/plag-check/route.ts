@@ -84,6 +84,7 @@ export async function POST(req: Request) {
     const submitJson = await submitRes.json();
 
     if (!submitJson?.data?.text?.id) {
+      console.error('[plag-check] submit response:', submitJson);
       return NextResponse.json(
         { error: "Failed to submit text", details: submitJson },
         { status: 400 }
